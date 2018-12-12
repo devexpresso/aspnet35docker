@@ -10,7 +10,7 @@ COPY aspnet35dockerdemo/*.config ./aspnet35dockerdemo/
 # copy everything else and build app
 COPY aspnet35dockerdemo/. ./aspnet35dockerdemo/
 WORKDIR /app/aspnet35dockerdemo
-#RUN msbuild /p:Configuration=Release
+RUN msbuild /p:Configuration=Release
 
 
 FROM microsoft/aspnet:3.5 AS runtime
