@@ -1,0 +1,9 @@
+version: '3.4'
+ 
+services:
+aspnet35dockerdemo:
+ image: aspnet35dockerdemo
+ container_name: dockerinstance.azurecr.io
+ build:
+  context: .
+    dockerfile: aspnet35docker/Dockerfile

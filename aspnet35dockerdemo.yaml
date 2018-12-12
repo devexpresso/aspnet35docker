@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: aspnet35dockerdemo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: aspnet35dockerdemo
+    spec:
+      containers:
+      - name: aspnet35dockerdemo
+        image: dockerinstance.azurecr.io/aspnet35dockerdemo
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnet35dockerdemo
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    app: aspnet35dockerdemo
+  type: LoadBalancer
